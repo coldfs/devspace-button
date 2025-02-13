@@ -7,14 +7,13 @@
     <depends>com.intellij.modules.platform</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
-    <resource-bundle>icons.tailIcon</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
         <toolWindow 
             id="Devspace Console" 
             secondary="true"
-            icon="AllIcons.General.Modified" 
+            icon="/icons/devspace.svg"
             anchor="bottom" 
             factoryClass="com.example.DevspaceConsoleWindow"/>
         <statusBarWidgetFactory implementation="com.example.ColorChangeButtonFactory"/>

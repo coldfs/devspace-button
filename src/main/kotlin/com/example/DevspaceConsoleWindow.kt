@@ -99,7 +99,7 @@ class DevspaceConsoleWindow : ToolWindowFactory, Disposable {
         }
         
         val scrollPane = JBScrollPane(textArea)
-        val content = contentFactory.createContent(scrollPane, "", false)
+        val content = contentFactory.createContent(scrollPane, "Devspace Console", false)
         toolWindow.contentManager.addContent(content)
     }
     
