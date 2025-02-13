@@ -12,6 +12,7 @@ import javax.swing.JTextArea
 import kotlinx.coroutines.*
 import com.intellij.openapi.application.ApplicationManager
 import java.io.File
+import java.io.IOException
 
 class TimeConsoleWindow : ToolWindowFactory, Disposable {
     companion object {
@@ -36,12 +37,26 @@ class TimeConsoleWindow : ToolWindowFactory, Disposable {
                 }
 
                 val settings = TailPluginSettings.getInstance(currentProject!!)
-                val command = settings.command.split(" ").toTypedArray()
+                val commandParts = settings.command.split(" ").toTypedArray()
+                val executable = ProcessUtils.findExecutableInPath(commandParts[0]) ?: commandParts[0]
                 
-                tailProcess = ProcessBuilder(*command)
-                    .redirectErrorStream(true)
-                    .directory(File(projectPath))
-                    .start()
+                val processBuilder = ProcessBuilder(
+                    listOf(executable) + commandParts.drop(1)
+                ).apply {
+                    redirectErrorStream(true)
+                    directory(File(projectPath))
+                    environment()["PATH"] = System.getenv("PATH")
+                }
+                
+                try {
+                    tailProcess = processBuilder.start()
+                } catch (e: IOException) {
+                    appendMessage("Error starting process: ${e.message}")
+                    appendMessage("Command: $executable")
+                    appendMessage("Working directory: ${processBuilder.directory()}")
+                    appendMessage("PATH: ${processBuilder.environment()["PATH"]}")
+                    return
+                }
                 
                 job = CoroutineScope(Dispatchers.IO).launch {
                     val reader = BufferedReader(InputStreamReader(tailProcess!!.inputStream))
