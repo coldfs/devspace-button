@@ -15,11 +15,20 @@ class ColorChangeButton : CustomStatusBarWidget {
     }
     
     private var isYellow = false
+    private var isTailRunning = false
     
     init {
         button.addActionListener {
             isYellow = !isYellow
             button.background = if (isYellow) Color.YELLOW else Color.RED
+            
+            if (isYellow) {
+                TimeConsoleWindow.startTailProcess()
+                isTailRunning = true
+            } else {
+                TimeConsoleWindow.stopTailProcess()
+                isTailRunning = false
+            }
         }
     }
 
@@ -31,5 +40,9 @@ class ColorChangeButton : CustomStatusBarWidget {
 
     override fun install(statusBar: StatusBar) {}
 
-    override fun dispose() {}
+    override fun dispose() {
+        if (isTailRunning) {
+            TimeConsoleWindow.stopTailProcess()
+        }
+    }
 } 

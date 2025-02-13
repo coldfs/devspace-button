@@ -10,6 +10,12 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow 
+            id="Time Console" 
+            secondary="true"
+            icon="AllIcons.General.Modified" 
+            anchor="bottom" 
+            factoryClass="com.example.TimeConsoleWindow"/>
         <statusBarWidgetFactory implementation="com.example.ColorChangeButtonFactory"/>
     </extensions>
 
