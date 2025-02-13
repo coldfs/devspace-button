@@ -19,6 +19,11 @@ class TimeConsoleWindow : ToolWindowFactory, Disposable {
         private var tailProcess: Process? = null
         private var job: Job? = null
         private var currentProject: Project? = null
+        private var onLineRead: ((String) -> Unit)? = null
+        
+        fun setOnLineReadListener(listener: (String) -> Unit) {
+            onLineRead = listener
+        }
         
         fun startTailProcess() {
             stopTailProcess()
@@ -48,6 +53,7 @@ class TimeConsoleWindow : ToolWindowFactory, Disposable {
                         val line = reader.readLine() ?: break
                         ApplicationManager.getApplication().invokeLater {
                             textArea?.append("$line\n")
+                            onLineRead?.invoke(line)
                         }
                     }
                 }
@@ -88,5 +94,6 @@ class TimeConsoleWindow : ToolWindowFactory, Disposable {
     override fun dispose() {
         stopTailProcess()
         currentProject = null
+        onLineRead = null
     }
 } 
