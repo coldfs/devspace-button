@@ -18,6 +18,12 @@
             anchor="bottom" 
             factoryClass="com.example.TimeConsoleWindow"/>
         <statusBarWidgetFactory implementation="com.example.ColorChangeButtonFactory"/>
+        <projectService serviceImplementation="com.example.TailPluginSettings"/>
+        <projectConfigurable
+            parentId="tools"
+            instance="com.example.TailSettingsConfigurable"
+            id="com.example.TailSettingsConfigurable"
+            displayName="Tail Plugin Settings"/>
     </extensions>
 
     <applicationListeners>

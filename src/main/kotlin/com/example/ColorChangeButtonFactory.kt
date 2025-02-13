@@ -11,7 +11,7 @@ class ColorChangeButtonFactory : StatusBarWidgetFactory {
 
     override fun isAvailable(project: Project): Boolean = true
 
-    override fun createWidget(project: Project): StatusBarWidget = ColorChangeButton()
+    override fun createWidget(project: Project): StatusBarWidget = ColorChangeButton(project)
 
     override fun disposeWidget(widget: StatusBarWidget) {}
 } 

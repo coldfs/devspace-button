@@ -11,8 +11,9 @@ import javax.swing.BorderFactory
 import com.intellij.ui.JBColor
 import com.intellij.ui.scale.JBUIScale
 import javax.swing.Icon
+import com.intellij.openapi.project.Project
 
-class ColorChangeButton : CustomStatusBarWidget {
+class ColorChangeButton(private val project: Project) : CustomStatusBarWidget {
     private val redIcon = createIcon(Color.RED)
     private val yellowIcon = createIcon(Color.YELLOW)
     private val greenIcon = createIcon(Color.GREEN)
@@ -43,8 +44,9 @@ class ColorChangeButton : CustomStatusBarWidget {
     private var isTailRunning = false
     
     init {
+        val settings = TailPluginSettings.getInstance(project)
         TimeConsoleWindow.setOnLineReadListener { line ->
-            if (isTailRunning && line.trim() == "this one") {
+            if (isTailRunning && line.trim() == settings.successText) {
                 button.icon = greenIcon
             } else if (isTailRunning) {
                 button.icon = yellowIcon
