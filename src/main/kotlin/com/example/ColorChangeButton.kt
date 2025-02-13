@@ -46,7 +46,7 @@ class ColorChangeButton(private val project: Project) : CustomStatusBarWidget {
     init {
         val settings = TailPluginSettings.getInstance(project)
         TimeConsoleWindow.setOnLineReadListener { line ->
-            if (isTailRunning && line.trim() == settings.successText) {
+            if (isTailRunning && line.contains(settings.successText, ignoreCase = true)) {
                 button.icon = greenIcon
             } else if (isTailRunning) {
                 button.icon = yellowIcon
