@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>org.jetbrains.plugins.template</id>
-    <name>IntelliJ Platform Plugin Template</name>
+    <name>Devspace Background Plugin</name>
     <vendor>JetBrains</vendor>
 
     <depends>com.intellij.modules.platform</depends>
@@ -12,18 +12,18 @@
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
         <toolWindow 
-            id="Time Console" 
+            id="Devspace Console" 
             secondary="true"
             icon="AllIcons.General.Modified" 
             anchor="bottom" 
-            factoryClass="com.example.TimeConsoleWindow"/>
+            factoryClass="com.example.DevspaceConsoleWindow"/>
         <statusBarWidgetFactory implementation="com.example.ColorChangeButtonFactory"/>
-        <projectService serviceImplementation="com.example.TailPluginSettings"/>
+        <projectService serviceImplementation="com.example.DevspaceSettings"/>
         <projectConfigurable
             parentId="tools"
-            instance="com.example.TailSettingsConfigurable"
-            id="com.example.TailSettingsConfigurable"
-            displayName="Tail Plugin Settings"/>
+            instance="com.example.DevspaceSettingsConfigurable"
+            id="com.example.DevspaceSettingsConfigurable"
+            displayName="Devspace Background Settings"/>
     </extensions>
 
     <applicationListeners>

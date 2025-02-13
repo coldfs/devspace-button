@@ -14,7 +14,7 @@ import com.intellij.openapi.application.ApplicationManager
 import java.io.File
 import java.io.IOException
 
-class TimeConsoleWindow : ToolWindowFactory, Disposable {
+class DevspaceConsoleWindow : ToolWindowFactory, Disposable {
     companion object {
         private var textArea: JTextArea? = null
         private var tailProcess: Process? = null
@@ -36,7 +36,7 @@ class TimeConsoleWindow : ToolWindowFactory, Disposable {
                     return
                 }
 
-                val settings = TailPluginSettings.getInstance(currentProject!!)
+                val settings = DevspaceSettings.getInstance(currentProject!!)
                 val commandParts = settings.command.split(" ").toTypedArray()
                 val executable = ProcessUtils.findExecutableInPath(commandParts[0]) ?: commandParts[0]
                 

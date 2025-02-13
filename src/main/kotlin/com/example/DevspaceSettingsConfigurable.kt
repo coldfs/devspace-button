@@ -8,12 +8,12 @@ import com.intellij.util.ui.FormBuilder
 import javax.swing.JComponent
 import javax.swing.JPanel
 
-class TailSettingsConfigurable(private val project: Project) : Configurable {
+class DevspaceSettingsConfigurable(private val project: Project) : Configurable {
     private var successTextField: JBTextField? = null
     private var commandTextField: JBTextField? = null
-    private val settings get() = TailPluginSettings.getInstance(project)
+    private val settings get() = DevspaceSettings.getInstance(project)
 
-    override fun getDisplayName(): String = "Tail Plugin Settings"
+    override fun getDisplayName(): String = "Devspace Background Settings"
 
     override fun createComponent(): JComponent {
         successTextField = JBTextField(settings.successText)
@@ -33,7 +33,7 @@ class TailSettingsConfigurable(private val project: Project) : Configurable {
 
     override fun apply() {
         settings.successText = successTextField?.text ?: "this one"
-        settings.command = commandTextField?.text ?: "tail -f log.txt"
+        settings.command = commandTextField?.text ?: "devspace dev"
     }
 
     override fun reset() {

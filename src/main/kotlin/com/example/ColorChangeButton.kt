@@ -44,8 +44,8 @@ class ColorChangeButton(private val project: Project) : CustomStatusBarWidget {
     private var isTailRunning = false
     
     init {
-        val settings = TailPluginSettings.getInstance(project)
-        TimeConsoleWindow.setOnLineReadListener { line ->
+        val settings = DevspaceSettings.getInstance(project)
+        DevspaceConsoleWindow.setOnLineReadListener { line ->
             if (isTailRunning && line.contains(settings.successText, ignoreCase = true)) {
                 button.icon = greenIcon
             } else if (isTailRunning) {
@@ -58,11 +58,11 @@ class ColorChangeButton(private val project: Project) : CustomStatusBarWidget {
             
             if (isYellow) {
                 button.icon = yellowIcon
-                TimeConsoleWindow.startTailProcess()
+                DevspaceConsoleWindow.startTailProcess()
                 isTailRunning = true
             } else {
                 button.icon = redIcon
-                TimeConsoleWindow.stopTailProcess()
+                DevspaceConsoleWindow.stopTailProcess()
                 isTailRunning = false
             }
         }
@@ -78,7 +78,7 @@ class ColorChangeButton(private val project: Project) : CustomStatusBarWidget {
 
     override fun dispose() {
         if (isTailRunning) {
-            TimeConsoleWindow.stopTailProcess()
+            DevspaceConsoleWindow.stopTailProcess()
         }
     }
 } 
