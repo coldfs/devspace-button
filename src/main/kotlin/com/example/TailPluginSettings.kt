@@ -10,6 +10,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 )
 class TailPluginSettings : PersistentStateComponent<TailPluginSettings> {
     var successText: String = "this one"
+    var command: String = "tail -f log.txt"
 
     override fun getState(): TailPluginSettings = this
 

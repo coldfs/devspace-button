@@ -35,13 +35,10 @@ class TimeConsoleWindow : ToolWindowFactory, Disposable {
                     return
                 }
 
-                val logFile = File(projectPath, "log.txt")
-                if (!logFile.exists()) {
-                    logFile.createNewFile()
-                    appendMessage("Created new log.txt file")
-                }
+                val settings = TailPluginSettings.getInstance(currentProject!!)
+                val command = settings.command.split(" ").toTypedArray()
                 
-                tailProcess = ProcessBuilder("tail", "-f", logFile.absolutePath)
+                tailProcess = ProcessBuilder(*command)
                     .redirectErrorStream(true)
                     .directory(File(projectPath))
                     .start()
