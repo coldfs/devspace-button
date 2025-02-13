@@ -30,6 +30,18 @@ class ColorChangeButton(private val project: Project) : CustomStatusBarWidget {
         override fun getIconHeight(): Int = JBUIScale.scale(16)
     }
     
+    private var isYellow = false
+    private var isTailRunning = false
+    
+    private fun updateTooltip() {
+        val settings = DevspaceSettings.getInstance(project)
+        button.toolTipText = if (isTailRunning) {
+            "Stop devspace (${settings.command})"
+        } else {
+            "Run devspace (${settings.command})"
+        }
+    }
+    
     private val button = JButton().apply {
         icon = redIcon
         preferredSize = Dimension(JBUIScale.scale(20), JBUIScale.scale(20))
@@ -40,10 +52,9 @@ class ColorChangeButton(private val project: Project) : CustomStatusBarWidget {
         background = JBColor.background()
     }
     
-    private var isYellow = false
-    private var isTailRunning = false
-    
     init {
+        updateTooltip()
+        
         val settings = DevspaceSettings.getInstance(project)
         DevspaceConsoleWindow.setOnLineReadListener { line ->
             if (isTailRunning && line.contains(settings.successText, ignoreCase = true)) {
@@ -65,6 +76,8 @@ class ColorChangeButton(private val project: Project) : CustomStatusBarWidget {
                 DevspaceConsoleWindow.stopTailProcess()
                 isTailRunning = false
             }
+            
+            updateTooltip()
         }
     }
 
