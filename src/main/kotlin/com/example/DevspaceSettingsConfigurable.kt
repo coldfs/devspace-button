@@ -32,8 +32,8 @@ class DevspaceSettingsConfigurable(private val project: Project) : Configurable 
     }
 
     override fun apply() {
-        settings.successText = successTextField?.text ?: "this one"
-        settings.command = commandTextField?.text ?: "devspace dev"
+        settings.successText = successTextField?.text ?: "ssh php-skypro"
+        settings.command = commandTextField?.text ?: "/usr/local/bin/devspace dev"
     }
 
     override fun reset() {
