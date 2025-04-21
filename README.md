@@ -1,3 +1,14 @@
+# Как поставить из репозитория
+
+1. Сделать изменения
+2. Создать пул реквест
+3. В папйлайне в разделе build найти раздел Upload Artifact
+4. Там скачать зип архив, его можно поставить через "Install plugin from disk" в phpstorm
+
+Открытые вопросы:
+
+- Как сбилдить билд локально?
+
 # devspace-button
 
 ![Build](https://github.com/coldfs/devspace-button/workflows/Build/badge.svg)
@@ -5,6 +16,7 @@
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 
 ## Template ToDo list
+
 - [x] Create a new [IntelliJ Platform Plugin Template][template] project.
 - [ ] Get familiar with the [template documentation][template].
 - [ ] Adjust the [pluginGroup](./gradle.properties) and [pluginName](./gradle.properties), as well as the [id](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
@@ -17,20 +29,22 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
+
 This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
 
 This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
+To keep everything working, do not remove `<!-- ... -->` sections.
+
 <!-- Plugin description end -->
 
 ## Installation
 
 - Using the IDE built-in plugin system:
-  
+
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "devspace-button"</kbd> >
   <kbd>Install</kbd>
-  
+
 - Using JetBrains Marketplace:
 
   Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
@@ -43,8 +57,8 @@ To keep everything working, do not remove `<!-- ... -->` sections.
   Download the [latest release](https://github.com/coldfs/devspace-button/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
-
 ---
+
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template

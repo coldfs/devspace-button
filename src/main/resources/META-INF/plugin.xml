@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.coldfs.devspacebutton</id>
-    <name>Devspace Background Plugin</name>
+    <name>Devspace Button</name>
     <vendor>coldfs</vendor>
 
     <depends>com.intellij.modules.platform</depends>
@@ -10,19 +10,10 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="com.github.coldfs.devspacebutton.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <toolWindow 
-            id="Devspace Console" 
-            secondary="true"
-            icon="/icons/devspace.svg"
-            anchor="bottom" 
-            factoryClass="com.example.DevspaceConsoleWindow"/>
+        <toolWindow id="Devspace Console" secondary="true" icon="/icons/devspace.svg" anchor="bottom" factoryClass="com.example.DevspaceConsoleWindow"/>
         <statusBarWidgetFactory implementation="com.example.ColorChangeButtonFactory"/>
         <projectService serviceImplementation="com.example.DevspaceSettings"/>
-        <projectConfigurable
-            parentId="tools"
-            instance="com.example.DevspaceSettingsConfigurable"
-            id="com.example.DevspaceSettingsConfigurable"
-            displayName="Devspace Background Settings"/>
+        <projectConfigurable parentId="tools" instance="com.example.DevspaceSettingsConfigurable" id="com.example.DevspaceSettingsConfigurable" displayName="Devspace Background Settings"/>
     </extensions>
 
     <applicationListeners>
